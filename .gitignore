@@ -1,0 +1,11 @@
+.DS_Store
+service/node_modules/
+web/node_modules/
+web/npm-debug.log
+web/yarn-error.log
+web/test/unit/coverage
+web/test/e2e/reports
+web/selenium-debug.log
+*.iml
+.idea/
+*.gz
