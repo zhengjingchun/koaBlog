@@ -4,6 +4,7 @@ const articleController = require('../controllers/articleController')
 
 
 router.post('/login', userController.userLogin)
+    .post('/saveArticle', articleController.saveArticle)
     .get('/getArticles', articleController.getArticleByPage)
     .get('/getArticleById', articleController.getArticleById)
     .get('/getArchive', articleController.getArchive)

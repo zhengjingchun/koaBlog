@@ -132,10 +132,22 @@ getArticleByTag = async (ctx, next) => {
 }
 
 saveArticle = async (ctx, next) => {
-    let article = ctx.request.body
+    let requestBody = ctx.request.body
+    let post = {
+        userId: requestBody.userId,
+        name: requestBody.name,
+        time: new Date(),
+        title: requestBody.title,
+        post: requestBody.post,
+        tags: requestBody.tags,
+        comments: [],
+        pv: 0
+    }
     let result = new Result({code:0, message: '数据库出错', content: ''})
     try {
-        await
+        await Article.create(post)
+        result.code = 1
+        result.message = "成功发表文章"
         ctx.body = result
     } catch (err) {
         ctx.body = result
@@ -151,11 +163,11 @@ deleteArticle = async (ctx, next) => {
     try {
         await Article.findOneAndRemove(query)
         result.code = 1
-        result.message = "获取文章成功"
+        result.message = "成功删除文章"
         ctx.body = result
     } catch (err) {
         ctx.body = result
     }
 }
 
-module.exports = {getArticleByPage, getArticleById, getArchive, getTags, getArticleByTag, deleteArticle}
+module.exports = {getArticleByPage, getArticleById, getArchive, getTags, getArticleByTag, deleteArticle, saveArticle}
