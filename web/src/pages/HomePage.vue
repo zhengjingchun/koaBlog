@@ -8,20 +8,20 @@
 </template>
 
 <script>
+import articleResource from '../resourse/article.resource'
 export default {
   name: 'HomePage',
   data () {
     return {
-      articleList: []
+      articleList: [],
+      pageNo: 1,
+      pageSize: 10
     }
   },
   created: function () {
-    this.$ajax.get('http://localhost:3000/getArticles', {
-      pageNo: 1,
-      pageSize: 10
-    }).then((response) => {
+    articleResource.getArticles(this.pageNo, this.pageSize).then((response) => {
       console.log(response)
-      this.articleList = response.data.content
+      this.articleList = response.content
     })
   }
 }

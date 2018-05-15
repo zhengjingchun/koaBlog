@@ -18,7 +18,6 @@ export default {
   },
   methods: {
     login: function () {
-      console.log(this.user)
       this.$ajax({
         method: 'post',
         url: 'http://localhost:3000/login',
